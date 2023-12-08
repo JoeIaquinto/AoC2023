@@ -99,4 +99,9 @@ public class Day_05 : BaseDay
         });
         return new(minLocation.ToString());
     }
+
+    public override ValueTask<string> Solve_2()
+    {
+        throw new NotImplementedException();
+    }
 }

@@ -77,7 +77,7 @@ public class HandComparer : IComparer<Hand>
     }
 }
 
-public record Hand : IEquatable<Hand>, IComparable<Hand>
+public record Hand
 {
     public Hand(int bid, List<Card> cards, bool jokersWild)
     {
@@ -96,47 +96,6 @@ public record Hand : IEquatable<Hand>, IComparable<Hand>
     override public string ToString()
     {
         return $"{Bid}: {string.Join(" ", Cards.Select(x => x.ToString()))}";
-    }
-
-    public static bool operator <(Hand left, Hand right)
-    {
-        return left is null ? right is not null : left.CompareTo(right) < 0;
-    }
-
-    public static bool operator <=(Hand left, Hand right)
-    {
-        return left is null || left.CompareTo(right) <= 0;
-    }
-
-    public static bool operator >(Hand left, Hand right)
-    {
-        return left is not null && left.CompareTo(right) > 0;
-    }
-
-    public static bool operator >=(Hand left, Hand right)
-    {
-        return left is null ? right is null : left.CompareTo(right) >= 0;
-    }
-
-    public int CompareTo(Hand? other)
-    {
-        ArgumentNullException.ThrowIfNull(other);
-        var diff = GetHandOrder(this) - GetHandOrder(other);
-        if (diff > 0) return 1;
-        if (diff  < 0) return -1;
-        if (diff == 0)
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                diff = (this.Cards[i] - other.Cards[i]);
-                if (diff != 0)
-                {
-                    if (diff > 0) return 1;
-                    if (diff < 0) return -1;
-                }
-            }
-        }
-        return 0;
     }
 
     public static int GetHandOrder(Hand hand)
