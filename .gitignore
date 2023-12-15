@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 
 Vault
+src/AoC_2023/Inputs/*

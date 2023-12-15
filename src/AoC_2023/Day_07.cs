@@ -250,7 +250,7 @@ public class Card(string value, bool jokersWild) : IEquatable<Card>, IComparable
         return other?.NumericValue == NumericValue;
     }
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
         if (ReferenceEquals(this, obj))
         {
